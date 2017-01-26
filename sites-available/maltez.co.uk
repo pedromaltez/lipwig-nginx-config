@@ -1,12 +1,23 @@
 server {
-  listen 80;
+  listen 443 ssl;
   server_name maltez.co.uk;
   root /srv/https/maltez.co.uk;
+  ssl_certificate /etc/letsencrypt/live/maltez.co.uk/fullchain.pem;
+  ssl_certificate_key /etc/letsencrypt/live/maltez.co.uk/privkey.pem;
 }
 
 server {
   listen 80;
+  listen 443 ssl;
   server_name w.maltez.co.uk ww.maltez.co.uk www.maltez.co.uk wwww.maltez.co.uk;
-  return 301 http://maltez.co.uk$request_uri;
+  return 301 https://maltez.co.uk$request_uri;
+  expires 1m;
+}
+
+# must be separate from above or it will cause a redirect loop
+server {
+  listen 80;
+  server_name maltez.co.uk;
+  return 301 https://maltez.co.uk$request_uri;
   expires 1m;
 }
