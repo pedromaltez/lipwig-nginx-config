@@ -1,0 +1,12 @@
+server {
+  listen 80;
+  server_name example.com;
+  root /srv/https/example.com;
+}
+
+server {
+  listen 80;
+  server_name w.example.com ww.example.com www.example.com wwww.example.com;
+  return 301 http://example.com$request_uri;
+  expires 1m;
+}

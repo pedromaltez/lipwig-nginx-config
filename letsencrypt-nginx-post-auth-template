@@ -1,0 +1,23 @@
+server {
+  listen 443 ssl;
+  server_name example.com;
+  root /srv/https/example.com;
+  ssl_certificate /etc/letsencrypt/live/example.com/fullchain.pem;
+  ssl_certificate_key /etc/letsencrypt/live/example.com/privkey.pem;
+}
+
+server {
+  listen 80;
+  listen 443 ssl;
+  server_name w.example.com ww.example.com www.example.com wwww.example.com;
+  return 301 https://example.com$request_uri;
+  expires 1m;
+}
+
+# must be separate from above or it will cause a redirect loop
+server {
+  listen 80;
+  server_name example.com;
+  return 301 https://example.com$request_uri;
+  expires 1m;
+}
