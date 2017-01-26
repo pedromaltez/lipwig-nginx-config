@@ -1,0 +1,23 @@
+server {
+  listen 443 ssl;
+  server_name maltez.org;
+  root /srv/https/maltez.org;
+  ssl_certificate /etc/letsencrypt/live/maltez.org/fullchain.pem;
+  ssl_certificate_key /etc/letsencrypt/live/maltez.org/privkey.pem;
+}
+
+server {
+  listen 80;
+  listen 443 ssl;
+  server_name w.maltez.org ww.maltez.org www.maltez.org wwww.maltez.org;
+  return 301 https://maltez.org$request_uri;
+  expires 1m;
+}
+
+# must be separate from above or it will cause a redirect loop
+server {
+  listen 80;
+  server_name maltez.org;
+  return 301 https://maltez.org$request_uri;
+  expires 1m;
+}
