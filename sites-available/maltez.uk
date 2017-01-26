@@ -1,0 +1,12 @@
+server {
+  listen 80;
+  server_name maltez.uk;
+  root /srv/https/maltez.uk;
+}
+
+server {
+  listen 80;
+  server_name w.maltez.uk ww.maltez.uk www.maltez.uk wwww.maltez.uk;
+  return 301 http://maltez.uk$request_uri;
+  expires 1m;
+}

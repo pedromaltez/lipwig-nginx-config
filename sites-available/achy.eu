@@ -1,0 +1,12 @@
+server {
+  listen 80;
+  server_name achy.eu;
+  root /srv/https/achy.eu;
+}
+
+server {
+  listen 80;
+  server_name w.achy.eu ww.achy.eu www.achy.eu wwww.achy.eu;
+  return 301 http://achy.eu$request_uri;
+  expires 1m;
+}

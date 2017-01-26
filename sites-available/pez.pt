@@ -1,0 +1,12 @@
+server {
+  listen 80;
+  server_name pez.pt;
+  root /srv/https/pez.pt;
+}
+
+server {
+  listen 80;
+  server_name w.pez.pt ww.pez.pt www.pez.pt wwww.pez.pt;
+  return 301 http://pez.pt$request_uri;
+  expires 1m;
+}
