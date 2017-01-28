@@ -1,12 +1,23 @@
 server {
-  listen 80;
+  listen 443 ssl;
   server_name pez.pt;
   root /srv/https/pez.pt;
+  ssl_certificate /etc/letsencrypt/live/pez.pt/fullchain.pem;
+  ssl_certificate_key /etc/letsencrypt/live/pez.pt/privkey.pem;
 }
 
 server {
   listen 80;
+  listen 443 ssl;
   server_name w.pez.pt ww.pez.pt www.pez.pt wwww.pez.pt;
-  return 301 http://pez.pt$request_uri;
+  return 301 https://pez.pt$request_uri;
+  expires 1m;
+}
+
+# must be separate from above or it will cause a redirect loop
+server {
+  listen 80;
+  server_name pez.pt;
+  return 301 https://pez.pt$request_uri;
   expires 1m;
 }
