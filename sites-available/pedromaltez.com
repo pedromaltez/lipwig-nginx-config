@@ -21,3 +21,8 @@ server {
   return 301 https://pedromaltez.com$request_uri;
   expires 1m;
 }
+
+location * {
+  default_type "text/html";
+  try_files  https://pedromaltez.com$request_uri https://pedromaltez.com$request_uri.html https://pedromaltez.com$request_uri/index.html;
+}
