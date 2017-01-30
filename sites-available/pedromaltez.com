@@ -4,6 +4,7 @@ server {
   root /srv/https/pedromaltez.com;
   ssl_certificate /etc/letsencrypt/live/pedromaltez.com/fullchain.pem;
   ssl_certificate_key /etc/letsencrypt/live/pedromaltez.com/privkey.pem;
+  try_files $uri $uri.html /index.html =404;
 }
 
 server {
@@ -20,9 +21,4 @@ server {
   server_name pedromaltez.com;
   return 301 https://pedromaltez.com$request_uri;
   expires 1m;
-}
-
-location * {
-  default_type "text/html";
-  try_files  https://pedromaltez.com$request_uri https://pedromaltez.com$request_uri.html https://pedromaltez.com$request_uri/index.html;
 }
