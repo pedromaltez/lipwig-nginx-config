@@ -4,7 +4,7 @@ server {
   root /srv/https/pedromaltez.com;
   ssl_certificate /etc/letsencrypt/live/pedromaltez.com/fullchain.pem;
   ssl_certificate_key /etc/letsencrypt/live/pedromaltez.com/privkey.pem;
-  try_files $uri $uri.html =404;
+  try_files $uri$args $uri.html/$args $uri/index.html/$args =404;
 }
 
 server {
