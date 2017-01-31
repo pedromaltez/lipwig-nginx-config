@@ -12,6 +12,12 @@ server {
   if ($request_uri ~* "/index.html") {
     rewrite (?i)^(.*)index\.html$ $1 permanent;
   }
+  if ($request_uri ~* "/index") {
+    rewrite (?i)^(.*)index\.html$ $1 permanent;
+  }
+  if ($request_uri ~* ".html") {
+    rewrite (?i)^(.*)/(.*)\.html $1/$2 permanent;
+  }
 }
 
 server {
