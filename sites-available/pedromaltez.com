@@ -9,6 +9,9 @@ server {
   location = /404.html {
     internal;
   }
+  if ($request_uri ~* "/index.html") {
+    rewrite (?i)^(.*)index\.html$ $1 permanent;
+  }
 }
 
 server {
