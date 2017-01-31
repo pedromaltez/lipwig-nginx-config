@@ -15,6 +15,8 @@ server {
   listen 80;
   listen 443 ssl;
   server_name w.pedromaltez.com ww.pedromaltez.com www.pedromaltez.com wwww.pedromaltez.com;
+  ssl_certificate /etc/letsencrypt/live/pedromaltez.com/fullchain.pem;
+  ssl_certificate_key /etc/letsencrypt/live/pedromaltez.com/privkey.pem;
   return 301 https://pedromaltez.com$request_uri;
   expires 1m;
 }
