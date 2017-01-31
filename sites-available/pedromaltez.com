@@ -5,7 +5,10 @@ server {
   ssl_certificate /etc/letsencrypt/live/pedromaltez.com/fullchain.pem;
   ssl_certificate_key /etc/letsencrypt/live/pedromaltez.com/privkey.pem;
   try_files $uri $uri/ $uri.html $uri/index.html =404;
-  error_page 403 =404;
+  error_page 403 =404 /404.html;
+  location = /404.html {
+      internal;
+  }
 }
 
 server {
