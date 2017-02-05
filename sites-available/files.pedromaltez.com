@@ -1,7 +1,7 @@
 server {
   listen 443 ssl;
   server_name files.pedromaltez.com;
-  root /srv/https/files.pedromaltez.com;
+  root /srv/https/files.pedromaltez.com/public;
   ssl_certificate /etc/letsencrypt/live/files.pedromaltez.com/fullchain.pem;
   ssl_certificate_key /etc/letsencrypt/live/files.pedromaltez.com/privkey.pem;
 }
