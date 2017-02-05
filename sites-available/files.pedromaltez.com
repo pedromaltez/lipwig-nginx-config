@@ -1,12 +1,15 @@
 server {
-  listen 80;
+  listen 443 ssl;
   server_name files.pedromaltez.com;
   root /srv/https/files.pedromaltez.com;
+  ssl_certificate /etc/letsencrypt/live/files.pedromaltez.com/fullchain.pem;
+  ssl_certificate_key /etc/letsencrypt/live/files.pedromaltez.com/privkey.pem;
 }
 
+# must be separate from above or it will cause a redirect loop
 server {
   listen 80;
-  server_name w.files.pedromaltez.com ww.files.pedromaltez.com www.files.pedromaltez.com wwww.files.pedromaltez.com;
-  return 301 http://pedromaltez.com$request_uri;
+  server_name files.pedromaltez.com;
+  return 301 https://files.pedromaltez.com$request_uri;
   expires 1m;
 }
