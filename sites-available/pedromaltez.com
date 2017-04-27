@@ -1,7 +1,7 @@
 server {
   listen 443 ssl;
   server_name pedromaltez.com;
-  root /srv/https/pedromaltez.com/public;
+  root /srv/https/pedromaltez.com;
   ssl_certificate /etc/letsencrypt/live/pedromaltez.com/fullchain.pem;
   ssl_certificate_key /etc/letsencrypt/live/pedromaltez.com/privkey.pem;
   try_files $uri $uri.html $uri/ $uri/index.html =404;
